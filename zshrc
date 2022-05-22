@@ -25,13 +25,15 @@ alias ip="ip -c"
 alias showip="ip --brief a"
 alias ssh='TERM=xterm ssh'
 alias ll="ls -l"
+alias code="vscodium"
+alias gst="git status"
 
 # Lines configured by zsh-newuser-install
 bindkey -e
 
 # History config
 HIST_IGNORE_DUPS="true"
-HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd/mm/yyyy"
 HISTFILE=~/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE

@@ -4,7 +4,7 @@
   name = "gruvbox-dark"
 
 [icons]
-  name = "awesome5"
+  name = "awesome6"
 
 [icons.overrides]
   cpu = "  "
