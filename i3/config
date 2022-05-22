@@ -176,14 +176,14 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "01 "
-set $ws2 "02 "
-set $ws3 "03 "
-set $ws4 "04 "
-set $ws5 "05 "
-set $ws6 "06 "
-set $ws7 "07 "
-set $ws8 "08 "
+set $ws1 "01 "
+set $ws2 "02 "
+set $ws3 "03 "
+set $ws4 "04 "
+set $ws5 "05 "
+set $ws6 "06 "
+set $ws7 "07 "
+set $ws8 "08 "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
