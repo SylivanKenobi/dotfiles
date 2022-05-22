@@ -43,7 +43,7 @@ zstyle ':completion:*' menu select
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/aaron/.zshrc'
+zstyle :compinstall filename '/home/sylvain/.zshrc'
 
 autoload -Uz compinit
 compinit
