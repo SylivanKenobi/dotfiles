@@ -52,5 +52,9 @@ zstyle :compinstall filename '/home/sylvain/.zshrc'
 autoload -Uz compinit
 compinit
 
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
+
+
 # End of lines added by compinstall
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme

@@ -76,7 +76,8 @@ live_config_reload: true
 # Shell
 shell:
   program: /bin/zsh
-
+  args:
+    - --login
 # Startup directory
 working_directory: None
 
