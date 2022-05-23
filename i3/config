@@ -20,7 +20,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-set $font "pango:MesloLGS NF 11"
+set $font "pango:DejaVu Sans Mono, FontAwesome 6 Free 12"
 font $font
 
 # Use Mouse+$mod to drag floating windows
@@ -320,36 +320,6 @@ exec --no-startup-id xrandr --output HDMI-A-0 --mode 1920x1080 --set TearFree on
 exec --no-startup-id numlockx on
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #############################################
@@ -372,23 +342,23 @@ set $blue #458588
 set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
-set $darkgray #1d2021
+set $darkgrey #2e2e2d
 
 # font used by i3 for titles and bars
 # font pango:Hack 8
 
 #start of bar section
 bar {
-    font $font
+    font "pango:DejaVu Sans Mono, PowerlineSymbols, FontAwesome 6 Free 12"
     position top
-    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    status_command i3status-rs ~/.i3status-rust/config.toml
     colors {
         background #222439 # -> BG of Wallpaper for fake transparency
         statusline $yellow
         # class              border     backgr    text
-        focused_workspace    $darkgrey  $grey     $darkgrey
-        inactive_workspace   $darkgrey  $darkgrey $grey
-        active_workspace     $darkgrey  $darkgrey $grey
+        focused_workspace    $yellow    $darkgrey $yellow
+        inactive_workspace   $darkgrey  $darkgrey $yellow
+        active_workspace     $darkgrey  $darkgrey $yellow
         urgent_workspace     $red       $darkgrey $red
     }
 }
@@ -399,17 +369,18 @@ bar {
 
 # green gruvbox
 # class                 border|backgr|text|indicator|child_border
-#client.focused          $yellow $yellow $darkgray $purple $darkgray
-#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.focused          $yellow $yellow $darkgrey $purple $darkgrey
+#client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
+#client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
 #client.urgent           $red $red $white $red $red
 
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $yellow $yellow $darkgray $yellow $yellow
-client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.focused          $yellow $yellow $darkgrey $yellow $yellow
+client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
+client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
 client.urgent           $red $red $white $red $red
+
 
 #############################################
 ### settings for i3-gaps:                 ###
