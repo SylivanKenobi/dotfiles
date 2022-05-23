@@ -31,6 +31,8 @@ alias gst="git status"
 # Lines configured by zsh-newuser-install
 bindkey -e
 
+plugins=(git zsh-autosuggestions)
+
 # History config
 HIST_IGNORE_DUPS="true"
 HIST_STAMPS="dd/mm/yyyy"
