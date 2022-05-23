@@ -38,7 +38,7 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 # set background
-exec_always --no-startup-id feh --bg-scale ~/Pictures/backgrounds/*
+exec_always --no-startup-id feh --bg-scale ~/.wallpapers/*
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
