@@ -6,12 +6,16 @@
 [icons]
   name = "awesome6"
 
+[theme.overrides]
+  idle_fg = "#d79921"
+  alternating_tint_bg = "#2e2e2d"
+
 [icons.overrides]
   cpu = "  "
 
 [[block]]
   block = "custom"
-  command = "if [[ $(date +'%H') < 16 ]]; then; echo '☕'; else; echo '🍺'; fi"
+  command = "if [[ $(date +'%H') < 16 ]]; then; echo '🧉'; else; echo '🍺'; fi"
   interval = 10
 
 [[block]]
@@ -54,17 +58,19 @@
   step_width = 1
 
 [[block]]
-  block = "music"
-  buttons = ["play", "next"]
-
-[[block]]
   block = "temperature"
-  collapsed = true
+  collapsed = false
   interval = 10
   format = "{min} min, {max} max, {average} avg"
+  chip = "*-isa-*"
+  inputs = ["CPUTIN", "SYSTIN"]
 
 [[block]]
   block = "time"
-  format = "%A %v %T"
+  format = "%a %d/%m/%y %T"
   timezone = "Europe/Zurich"
   interval = 1
+
+[[block]]
+  block = "pacman"
+  interval = 600

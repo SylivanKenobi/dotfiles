@@ -20,14 +20,14 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-set $font "pango:DejaVu Sans Mono, FontAwesome 6 Free 12"
+set $font "pango:MesloLGS NF 11"
 font $font
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -342,17 +342,15 @@ set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
 set $darkgrey #2e2e2d
-
-# font used by i3 for titles and bars
-# font pango:Hack 8
+set $darkblue #010130
 
 #start of bar section
 bar {
-    font "pango:DejaVu Sans Mono, PowerlineSymbols, FontAwesome 6 Free 12"
+    font $font
     position top
     status_command i3status-rs ~/.i3status-rust/config.toml
     colors {
-        background #222439 # -> BG of Wallpaper for fake transparency
+        background $darkgrey
         statusline $yellow
         # class              border     backgr    text
         focused_workspace    $yellow    $darkgrey $yellow
