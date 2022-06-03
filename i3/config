@@ -13,11 +13,6 @@ set $mod Mod4
 
 focus_follows_mouse no
 
-# change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 set $font "pango:MesloLGS NF 11"
@@ -36,6 +31,9 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme gruvbox-dark-soft -font "mono 10"
+
+bindsym $mod+b exec --no-startup-id GTK_THEME=Adwaita:dark blueman-manager
+bindsym $mod+n exec --no-startup-id GTK_THEME=Adwaita:dark nm-connection-editor
 
 # set background
 exec_always --no-startup-id feh --bg-scale ~/.wallpapers/*
@@ -137,11 +135,6 @@ bindsym $mod+Ctrl+Shift+Left move workspace to output left
 bindsym $mod+Ctrl+Shift+Down move workspace to output down
 bindsym $mod+Ctrl+Shift+Up move workspace to output up
 bindsym $mod+Ctrl+Shift+Right move workspace to output right
-
-# workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
