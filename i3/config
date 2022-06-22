@@ -31,6 +31,8 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme gruvbox-dark-soft -font "mono 10"
+# power menu
+bindsym $mod+d exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu -theme gruvbox-dark-soft -font "mono 10"
 
 bindsym $mod+b exec --no-startup-id GTK_THEME=Adwaita:dark blueman-manager
 bindsym $mod+n exec --no-startup-id GTK_THEME=Adwaita:dark nm-connection-editor
