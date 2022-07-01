@@ -39,6 +39,7 @@ bindsym $mod+n exec --no-startup-id GTK_THEME=Adwaita:dark nm-connection-editor
 
 # set background
 exec_always --no-startup-id feh --bg-scale ~/.wallpapers/*
+exec_always --no-startup-id xrandr --output DP-1-3 --rotate left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
