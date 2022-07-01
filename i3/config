@@ -15,14 +15,14 @@ focus_follows_mouse no
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-set $font "pango:MesloLGS NF 11"
+set $font "pango:UbuntuMono Nerd Font Mono 12"
 font $font
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -326,7 +326,7 @@ set $darkblue #010130
 bar {
     font $font
     position top
-    status_command i3status-rs ~/.i3status-rust/config.toml
+    status_command i3status
     colors {
         background $darkgrey
         statusline $yellow

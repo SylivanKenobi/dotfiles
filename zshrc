@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/usr/share/oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 plugins=(git zsh-autosuggestions)
 
@@ -23,7 +23,7 @@ alias ip="ip -c"
 alias showip="ip --brief a"
 alias ssh='TERM=xterm ssh'
 alias ll="ls -l"
-alias code="vscodium"
+alias code="codium"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
 
@@ -42,4 +42,4 @@ setopt SHARE_HISTORY
 export PATH="$PATH:$HOME/.rvm/bin"
 [[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel9k.zsh-theme
