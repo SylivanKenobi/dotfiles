@@ -284,7 +284,7 @@ bindsym $mod+Print mode "$mode_screenshot"
 bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+Escape exec --no-startup-id i3lock -c 3a3b3a
 
 # Autostart applications
 exec --no-startup-id picom --vsync --config ~/.config/picom.conf
