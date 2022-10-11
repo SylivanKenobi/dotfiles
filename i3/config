@@ -306,6 +306,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
 default_floating_border normal
+# Fix black bar: https://github.com/Airblader/i3#gaps
+for_window [class="^.*"] border pixel 2
 
 # Hide borders
 hide_edge_borders none
