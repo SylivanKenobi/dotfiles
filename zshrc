@@ -23,7 +23,7 @@ alias ip="ip -c"
 alias showip="ip --brief a"
 alias ssh='TERM=xterm ssh'
 alias ll="ls -l"
-alias code="vscodium"
+alias code="vscodium --no-sandbox"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
 
