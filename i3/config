@@ -366,8 +366,9 @@ client.urgent           $red $red $white $red $red
 #############################################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 12
 gaps outer -2
+gaps top -8
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
