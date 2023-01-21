@@ -7,7 +7,7 @@ env:
 # Scroll config
 scrolling:
   # Maximum number of lines in the scrollback buffer.
-  history: 10000
+  history: 100000
   # Scrolling distance multiplier.
   multiplier: 3
 
@@ -22,18 +22,24 @@ cursor:
 font:
   # Normal (roman) font face
   normal:
-    family: IBM Plex Mono
+    family: MesloLGS NF
     #    family: DejaVu Sans Mono for Powerline
     style: regular
   # Bold font face
   bold:
-    family: IBM Plex Mono
+    family: MesloLGS NF
     style: bold
   # Italic font face
   italic:
-    family: IBM Plex Mono
+    family: MesloLGS NF
     style: italic
   size: 10
+
+cursor:
+  style:
+    shape: Block
+  vi_mode_style:
+    shape: Block
 
 # Colors (Gruvbox dark)
 colors:
@@ -68,7 +74,7 @@ colors:
 
 # Background opacity
 window:
-  opacity: 1.0
+  opacity: 0.8
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -88,6 +94,6 @@ mouse:
       program: firefox
 
 key_bindings:
-  - { key: B, mods: Command, action: IncreaseFontSize }
-  - { key: N, mods: Command, action: DecreaseFontSize }
-  - { key: M, mods: Command, action: ResetFontSize }
+  - { key: B, mods: Control, action: IncreaseFontSize }
+  - { key: N, mods: Control, action: DecreaseFontSize }
+  - { key: M, mods: Control, action: ResetFontSize }
