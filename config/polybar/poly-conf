@@ -16,16 +16,11 @@
 ;
 ;==========================================================
 
-[colors]
-background = #282A2E
-background-alt = #373B41
-foreground = #C5C8C6
-primary = #F0C674
-secondary = #8ABEB7
-alert = #A54242
-disabled = #707880
+
+include-file = $HOME/.config/polybar/macchiato.ini
 
 [bar/example]
+
 width = 100%
 height = 22pt
 radius = 6
@@ -36,8 +31,8 @@ font-1 = "Noto Color Emoji:scale=10"
 font-2 = "Symbols Nerd Font Mono:style=2048-em"
 ; dpi = 96
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.base}
+foreground = ${colors.text}
 
 line-size = 3pt
 
@@ -83,7 +78,7 @@ label-occupied = %name%
 label-occupied-padding = 1
 
 label-urgent = %name%
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.pink}
 label-urgent-padding = 1
 
 label-empty = %name%

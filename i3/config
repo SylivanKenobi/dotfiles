@@ -15,7 +15,7 @@ focus_follows_mouse no
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-set $font "pango:MesloLGS NF 11"
+set $font "xft:URWGothic-Book 11"
 font $font
 
 # Use Mouse+$mod to drag floating windows
