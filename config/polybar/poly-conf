@@ -17,39 +17,44 @@
 ;==========================================================
 
 
-include-file = $HOME/.config/polybar/macchiato.ini
+[colors]
+
+white = #FFFFFF
+light_green = #AA3e5936
+green = #3e5936
+yellow = #f0f084
+pink = #eb1e6d
+
 
 [bar/example]
 
-width = 100%
-height = 22pt
-radius = 6
+width = 99%
+radius = 12
 monitor = ${env:MONITOR:}
-
-font-0 = "MesloLGS NF:style=Regular"
+font-0 = "MesloLGS NF:style=Regular;1pt"
 font-1 = "Noto Color Emoji:scale=10"
 font-2 = "Symbols Nerd Font Mono:style=2048-em"
-; dpi = 96
+dpi = 85
 
-background = ${colors.base}
-foreground = ${colors.text}
+background = ${colors.white}
+foreground = ${colors.green}
 
 line-size = 3pt
 
 border-size = 3pt
-border-color = #00000000
+border-color = ${colors.green}
 
 padding-left = 0
 padding-right = 1
 
 module-margin = 1
 
-separator-foreground = ${colors.enabled}
+separator-foreground = ${colors.green}
 
-separator = |
+separator = 
 
-modules-left = xworkspaces xwindow
-modules-right = beer filesystem pulseaudio memory cpu eth date
+modules-left = i3 xwindow
+modules-right =  beer filesystem pulseaudio memory cpu date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -57,33 +62,40 @@ cursor-scroll = ns-resize
 enable-ipc = true
 
 tray-position = right
+tray-background = ${colors.green}
 
-; wm-restack = generic
-; wm-restack = bspwm
 wm-restack = i3
+override-redirect = true
 
-offset-x = 0%
-offset-y = 0%
+offset-x = 0.5%
+offset-y = 0.2%
 
-[module/xworkspaces]
-type = internal/xworkspaces
-icon-default =  '%{T1}'
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
 pin-workspaces = true
-label-active = %name%
-label-active-background = ${colors.background-alt}
-label-active-underline= ${colors.primary}
-label-active-padding = 1
+label-focused = %name% %icon%
+label-focused-background = ${colors.green}
+label-focused-foreground = ${colors.white}
+label-focused-underline= ${colors.yellow}
+label-focused-padding = 1
 
-label-occupied = %name%
-label-occupied-padding = 1
+label-unfocused = %name% %icon%
+label-unfocused-padding = 1
+label-unfocused-background = ${colors.white}
 
-label-urgent = %name%
+label-visible = %name% %icon%
+label-visible-padding = 1
+
+label-urgent = %name% %icon%
 label-urgent-background = ${colors.pink}
 label-urgent-padding = 1
 
-label-empty = %name%
-label-empty-foreground = ${colors.disabled}
-label-empty-padding = 1
+label-separator-padding = 0
+
+label-mode-background = ${colors.light_green}
+label-mode-foreground = ${colors.white}
 
 [module/xwindow]
 type = internal/xwindow
@@ -100,22 +112,22 @@ type = internal/fs
 interval = 25
 mount-0 = /
 
-label-mounted = %{F#F0C674}%mountpoint%%{F-} %free%
+label-mounted = %{F#3e5936}%mountpoint%%{F-} %free%
 
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.disabled}
+label-unmounted-background = ${colors.pink}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume-prefix = "📻 "
-format-volume-prefix-foreground = ${colors.primary}
+format-volume-prefix-foreground = ${colors.green}
 format-volume = <label-volume>
 
 label-volume = %percentage%%
-
 label-muted = muted
-label-muted-foreground = ${colors.disabled}
+label-muted-foreground = ${colors.green}
+click-right = pavucontrol
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -126,40 +138,33 @@ label-layout-foreground = ${colors.primary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-foreground = ${colors.background}
-label-indicator-background = ${colors.secondary}
+label-indicator-foreground = ${colors.green}
+label-indicator-background = ${colors.white}
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "🐏 "
-format-prefix-foreground = ${colors.primary}
 label = %percentage_used:2%%
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = "🧠 "
-format-prefix-foreground = ${colors.primary}
 label = %percentage:2%%
 
-[network-base]
-type = internal/network
-interval = 5
-format-connected = <label-connected>
-format-disconnected = <label-disconnected>
-label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+; [network-base]
+; type = internal/network
+; interval = 5
+; format-connected = <label-connected>
+; format-disconnected = <label-disconnected>
+; label-disconnected = %{F#3e5936}%ifname%%{F#707880} disconnected
 
 
-[module/wlan]
-inherit = network-base
-interface-type = wireless
-label-connected = %{F#F0C674}%ifname%%{F-} %essid% %local_ip%
-
-[module/eth]
-inherit = network-base
-interface-type = wired
-label-connected = %{F#F0C674}%ifname%%{F-} %local_ip% %upspeed% %downspeed%
+; [module/eth]
+; inherit = network-base
+; interface-type = wired
+; label-connected = %{F#3e5936}%ifname%%{F-} %local_ip% %upspeed% %downspeed%
 
 [module/date]
 type = internal/date
@@ -169,7 +174,6 @@ date = %d.%m.%Y %H:%M:%S
 date-alt = %d.%m.%Y %H:%M:%S
 
 label = %date%
-label-foreground = ${colors.primary}
 
 [settings]
 screenchange-reload = true

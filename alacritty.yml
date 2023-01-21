@@ -46,9 +46,9 @@ colors:
   # Default colors
   primary:
     # hard contrast: background = '#1d2021'
-    background: '#282828'
+    background: '#011a11'
     # soft contrast: background = '#32302f'
-    foreground: '#ebdbb2'
+    foreground: '#FFFFFF'
 
   # Normal colors
   normal:
@@ -74,7 +74,7 @@ colors:
 
 # Background opacity
 window:
-  opacity: 0.8
+  opacity: 0.5
 
 # Live config reload (changes require restart)
 live_config_reload: true

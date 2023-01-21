@@ -269,16 +269,8 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Screenshot menu
-set $mode_screenshot (f)ullscreen in cliboard and ~/Pictures/, (s)election
-mode "$mode_screenshot" {
-    bindsym f exec --no-startup-id flameshot full -c -p ~/Pictures, mode "default"
-    bindsym s exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Print mode "$mode_screenshot"
+bindsym $mod+Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
 
 bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
 
@@ -314,16 +306,22 @@ for_window [class="^.*"] border pixel 2
 hide_edge_borders none
 
 # set primary gruvbox colorscheme colors
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgrey #2e2e2d
-set $darkblue #010130
+# set $bg #282828
+# set $red #cc241d
+# set $green #98971a
+# set $yellow #d79921
+# set $blue #458588
+# set $purple #b16286
+# set $aqua #689d68
+# set $gray #a89984
+# set $darkblue #010130
+
+set $white #FFFFFF
+set $grey #a9a9a9
+set $green #3e5936
+set $yellow #f0f084
+set $pink #eb1e6d
+
 
 #start of bar section
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -346,20 +344,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #start of window title bars & borders section
 
-# green gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $yellow $yellow $darkgrey $purple $darkgrey
-#client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
-#client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
-#client.urgent           $red $red $white $red $red
-
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $yellow $yellow $darkgrey $yellow $yellow
-client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
-client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
-client.urgent           $red $red $white $red $red
-
+client.focused          $green  $white $green  $yellow $yellow
+client.focused_inactive $green  $green   $white $yellow $grey
+client.unfocused        $green  $green  $white $yellow $grey
+client.urgent           $pink   $pink   $white  $pink   $pink
 
 #############################################
 ### settings for i3-gaps:                 ###
@@ -367,8 +357,9 @@ client.urgent           $red $red $white $red $red
 
 # Set inner/outer gaps
 gaps inner 12
-gaps outer -2
-gaps top -8
+gaps outer -6
+gaps bottom -6
+gaps top 25
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
