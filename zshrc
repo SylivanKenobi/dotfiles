@@ -9,8 +9,8 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/usr/share/oh-my-zsh"
-
+export ZSH="/home/sylivan/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
@@ -40,6 +40,9 @@ setopt SHARE_HISTORY
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+source /usr/share/nvm/init-nvm.sh
 [[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
