@@ -24,6 +24,7 @@ primary = #F0C674
 secondary = #8ABEB7
 alert = #A54242
 disabled = #707880
+green = #77b255
 
 [bar/example]
 width = 100%
@@ -54,7 +55,7 @@ separator-foreground = ${colors.enabled}
 separator = |
 
 modules-left = xworkspaces xwindow
-modules-right = beer filesystem pulseaudio memory cpu eth date
+modules-right = beer battery filesystem pulseaudio memory cpu eth date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -69,6 +70,33 @@ wm-restack = i3
 
 offset-x = 0%
 offset-y = 0%
+
+[module/battery]
+type = internal/battery
+poll-interval = 1
+label-charging = %percentage:2%%
+format-charging-padding = 1
+format-charging-foreground = ${colors.foreground}
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+format-discharging-foreground = ${colors.foreground}
+format-full-prefix = " "
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-0-foreground = ${colors.red}
+format-discharging-padding = 1
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+format-charging = <animation-charging> <label-charging>
 
 [module/xworkspaces]
 type = internal/xworkspaces

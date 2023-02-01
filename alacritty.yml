@@ -27,7 +27,7 @@ font:
   italic:
     family: MesloLGS NF
     style: italic
-  size: 10
+  size: 8
 
 cursor:
   style:
