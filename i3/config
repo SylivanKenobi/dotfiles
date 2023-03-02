@@ -8,18 +8,15 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
-
+# The mouse doesn't define my focus
 focus_follows_mouse no
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-set $font "pango:MesloLGS NF 11"
-font $font
+# set background
+exec_always --no-startup-id feh --bg-scale ~/.wallpapers/*
 
-# Use Mouse+$mod to drag floating windows
-floating_modifier $mod
+#############################################
+#         General Keybindings               #
+#############################################
 
 # start a terminal
 bindsym $mod+Return exec alacritty
@@ -29,16 +26,17 @@ bindsym $mod+Shift+q kill
 # kill anything
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun -theme gruvbox-dark-soft -font "mono 10"
 # power menu
-bindsym $mod+0 exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu -theme gruvbox-dark-soft -font "mono 10"
+bindsym $mod+0 exec ~/.config/i3/scripts/powermenu
 
+# bluetooth manager
 bindsym $mod+b exec --no-startup-id GTK_THEME=Adwaita:dark blueman-manager
+# network manager
 bindsym $mod+n exec --no-startup-id GTK_THEME=Adwaita:dark nm-connection-editor
 
-# set background
-exec_always --no-startup-id feh --bg-scale ~/.wallpapers/*
+# Backlight control
+bindsym XF86MonBrightnessUp exec xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessDown exec xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -48,6 +46,69 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Power Profiles menu switcher (rofi)
+bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+
+# App Menu
+bindsym $mod+d exec rofi -modi drun -show drun \
+		-config ~/.config/rofi/rofidmenu.rasi
+
+# App switching
+bindsym $mod+t exec rofi -show window \
+		-config ~/.config/rofi/rofidmenu.rasi
+
+# Multimedia Keys
+
+# volume
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+
+# gradular volume control
+bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+
+# mute
+bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+
+# audio control
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Redirect sound to headphones
+bindsym $mod+p exec /usr/local/bin/switch-audio-port
+
+# Flameshot
+bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
+
+# Lock screen
+bindsym $mod+Escape exec --no-startup-id blurlock
+
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 #############################################
 ## Macropad Config                         ##
@@ -60,7 +121,7 @@ bindcode 192 exec --no-startup-id ~/.config/i3/audio.sh headset
 # No. 3
 bindcode 193 exec --no-startup-id firefox
 # No. 4
-bindcode 194 exec --no-startup-id chromium https://komoot.com
+bindcode 194 exec --no-startup-id chromium
 # No. 5
 bindcode 195 exec --no-startup-id discord
 # No. 6
@@ -73,36 +134,61 @@ bindcode 198 exec --no-startup-id nautilus
 bindcode 199 exec --no-startup-id blurlock
 
 #############################################
-## sound-section                           ##
+# autostart applications/services on login: #
 #############################################
 
-bindsym $mod+Shift+a mode "$mode_audio"
-set $mode_audio Set audio output Speackers(1) Headset(2)
-mode "$mode_audio" {
-    bindsym 1 exec --no-startup-id ~/.config/i3/audio.sh speackers, mode "default"
-    bindsym 2 exec --no-startup-id ~/.config/i3/audio.sh headset, mode "default"
+#get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+# dex execute .desktop files + apps using /etc/xdg/autostart.
+# when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
+# in this cases better disable dex and use manual starting apps using xdg/autostart
+# if enabled you should comment welcome app.
+# https://github.com/jceb/dex
+#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+exec --no-startup-id dex --autostart --environment i3
 
-bindsym $mod+Shift+Ctrl+a exec killall pulseaudio
+# num lock activated
+exec --no-startup-id numlockx on
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+# configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
+#exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
 
-# Screen brightness controls
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# start conky:
+#exec_always --no-startup-id conky
 
-# Media player controls
-# bindsym XF86AudioPlay exec playerctl play
-# bindsym XF86AudioPause exec playerctl pause
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
+# start a script to setup displays
+# uncomment the next line, use arandr to setup displays and save the file as monitor:
+exec --no-startup-id ~/.screenlayout/monitor.sh
+
+# set wallpaper
+# exec --no-startup-id sleep 2 && nitrogen --restore
+exec --no-startup-id sleep 1 && feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros-wallpaper.png
+
+# set powersavings for display:
+exec --no-startup-id xset s 480 dpms 600 600 600
+
+# disable power saving (for example if using xscreensaver)
+#exec --no-startup-id xset -dpms
+
+# use xautolock to use autosuspend rules for mobile devices
+# https://wiki.archlinux.org/title/Session_lock#xautolock
+#exec --no-startup-id xautolock -time 60 -locker "systemctl suspend"
+
+
+# xscreensaver
+# https://www.jwz.org/xscreensaver
+#exec --no-startup-id xscreensaver --no-splash
+
+# Desktop notifications
+exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+# alternative if you installed aside with XFCE4:
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
+# autotiling script
+# https://github.com/nwg-piotr/autotiling
+# `yay -S autotiling ;) (it is in AUR)
+#exec_always --no-startup-id autotiling
 
 #############################################
 ## Workspace stuff                         ##
@@ -211,92 +297,15 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
 assign [class="Steam"] $ws3
 
 #############################################
-## Floating stuff                          ##
+### settings for i3-gaps:                 ###
 #############################################
 
-# Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [title="File Transfer*"] floating enable
-for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="Xfburn"] floating enable
-# Titanfall 2
-for_window [class="steam_app_1182480"] floating enable
-
-# switch to workspace with urgent window automatically
-# for_window [urgent=latest] focus
-
-# Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-# Screenshot menu
-set $mode_screenshot (f)ullscreen in cliboard and ~/Pictures/, (s)election
-mode "$mode_screenshot" {
-    bindsym f exec --no-startup-id flameshot full -c -p ~/Pictures, mode "default"
-    bindsym s exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Print mode "$mode_screenshot"
-
-bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
-
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
-
-# Autostart applications
-exec --no-startup-id picom --vsync --config ~/.config/picom.conf
-# start notification daemon
-exec --no-startup-id dunst -config ~/.config/dunstrc
-exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
-# exec --no-startup-id xrandr --output DisplayPort-2 --mode 3440x1440 --rate 144.00
-# exec --no-startup-id xrandr --output HDMI-A-0 --mode 1920x1080 --set TearFree on
-# exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id numlockx on
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
+# Set inner/outer gaps
+gaps inner 14
+gaps outer -2
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 #############################################
@@ -356,59 +365,40 @@ client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
 client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
 client.urgent           $red $red $white $red $red
 
+##################
+# floating rules #
+##################
 
-#############################################
-### settings for i3-gaps:                 ###
-#############################################
+# set floating (nontiling) for apps needing it
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 
-# Set inner/outer gaps
-gaps inner 14
-gaps outer -2
+# set floating (nontiling) for special apps
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [window_role="About"] floating enable
 
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
+# set border of floating window
+for_window [class="urxvt"] border pixel 1
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-# smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+# Titanfall 2
+for_window [class="steam_app_1182480"] floating enable
