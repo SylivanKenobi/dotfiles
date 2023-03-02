@@ -30,9 +30,9 @@ bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+0 exec ~/.config/i3/scripts/powermenu
 
 # bluetooth manager
-bindsym $mod+b exec --no-startup-id GTK_THEME=Adwaita:dark blueman-manager
+bindsym $mod+b exec --no-startup-id blueberry
 # network manager
-bindsym $mod+n exec --no-startup-id GTK_THEME=Adwaita:dark nm-connection-editor
+bindsym $mod+n exec --no-startup-id nm-connection-editor
 
 # Backlight control
 bindsym XF86MonBrightnessUp exec xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
@@ -81,10 +81,10 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 # Flameshot
-bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
+bindsym Print exec --no-startup-id flameshot gui
 
 # Lock screen
-bindsym $mod+Escape exec --no-startup-id blurlock
+bindsym $mod+Escape exec --no-startup-id ~/.config/i3/script/blur-lock
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -131,7 +131,7 @@ bindcode 197 kill
 # No. 8
 bindcode 198 exec --no-startup-id nautilus
 # No. 9
-bindcode 199 exec --no-startup-id blurlock
+bindcode 199 exec --no-startup-id ~/.config/i3/script/blur-lock
 
 #############################################
 # autostart applications/services on login: #
