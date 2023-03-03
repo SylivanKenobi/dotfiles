@@ -269,18 +269,10 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Screenshot menu
-set $mode_screenshot (f)ullscreen in cliboard and ~/Pictures/, (s)election
-mode "$mode_screenshot" {
-    bindsym f exec --no-startup-id flameshot full -c -p ~/Pictures, mode "default"
-    bindsym s exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Print mode "$mode_screenshot"
+bindsym $mod+Print exec --no-startup-id flameshot gui -p ~/Pictures
 
-bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
+bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures
 
 # Lock screen
 bindsym $mod+9 exec --no-startup-id blurlock
@@ -326,21 +318,22 @@ set $darkgrey #2e2e2d
 set $darkblue #010130
 
 #start of bar section
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# bar {
-#     font $font
-#     position top
-#     status_command i3status-rs ~/.i3status-rust/config.toml
-#     colors {
-#         background $darkgrey
-#         statusline $yellow
-#         # class              border     backgr    text
-#         focused_workspace    $yellow    $darkgrey $yellow
-#         inactive_workspace   $darkgrey  $darkgrey $yellow
-#         active_workspace     $darkgrey  $darkgrey $yellow
-#         urgent_workspace     $red       $darkgrey $red
-#     }
-# }
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+bar {
+    font $font
+    position top
+    tray_output DP-3
+    status_command i3status-rs ~/.i3status-rust/config.toml
+    colors {
+        background $darkgrey
+        statusline $yellow
+        # class              border     backgr    text
+        focused_workspace    $yellow    $darkgrey $yellow
+        inactive_workspace   $darkgrey  $darkgrey $yellow
+        active_workspace     $darkgrey  $darkgrey $yellow
+        urgent_workspace     $red       $darkgrey $red
+    }
+}
 
 #end of bar section
 
@@ -367,8 +360,9 @@ client.urgent           $red $red $white $red $red
 
 # Set inner/outer gaps
 gaps inner 12
-gaps outer -2
-gaps top -8
+gaps outer -6
+gaps bottom -6
+gaps top 0
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
