@@ -26,6 +26,7 @@ alias ll="ls -l"
 alias code="vscodium --no-sandbox"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
+alias notes="vim ~/Documents/git/Notes"
 
 # History config
 HIST_IGNORE_DUPS="true"

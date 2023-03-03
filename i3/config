@@ -50,27 +50,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #############################################
-## Macropad Config                         ##
+## Monitor                                 ##
 #############################################
 
-# No. 1
-bindcode 191 exec --no-startup-id ~/.i3/audio.sh speackers
-# No. 2
-bindcode 192 exec --no-startup-id ~/.i3/audio.sh headset
-# No. 3
-bindcode 193 exec --no-startup-id firefox
-# No. 4
-bindcode 194 exec --no-startup-id discord
-# No. 5
-bindcode 195 exec --no-startup-id thunderbird
-# No. 6
-bindcode 196 exec --no-startup-id steam
-# No. 7
-bindcode 197 kill
-# No. 8
-bindcode 198 exec --no-startup-id nautilus
-# No. 9
-bindcode 199 exec --no-startup-id glitchlock -pixelate 5
+
 
 #############################################
 ## sound-section                           ##
@@ -283,10 +266,10 @@ bindsym $mod+Print mode "$mode_screenshot"
 bindsym Print exec --no-startup-id flameshot gui -p ~/Pictures, mode "default"
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
+bindsym $mod+Escape exec --no-startup-id i3lock
 
 # Autostart applications
-exec --no-startup-id picom --vsync --config ~/.picom.conf
+exec --no-startup-id picom --config ~/.picom.conf
 # start notification daemon
 exec --no-startup-id dunst -config ~/.dunstrc
 exec --no-startup-id nm-applet
