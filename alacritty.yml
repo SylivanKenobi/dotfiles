@@ -13,26 +13,10 @@ scrolling:
 
 # Corsor config
 cursor:
-  style: 
-    shape: Underline
-    blinking: Always
   unfocused_hollow: false
 
 # Font configuration
 font:
-  # Normal (roman) font face
-  normal:
-    family: IBM Plex Mono
-    #    family: DejaVu Sans Mono for Powerline
-    style: regular
-  # Bold font face
-  bold:
-    family: IBM Plex Mono
-    style: bold
-  # Italic font face
-  italic:
-    family: IBM Plex Mono
-    style: italic
   size: 10
 
 # Colors (Gruvbox dark)
@@ -68,7 +52,7 @@ colors:
 
 # Background opacity
 window:
-  opacity: 1.0
+  opacity: 0.8
 
 # Live config reload (changes require restart)
 live_config_reload: true
