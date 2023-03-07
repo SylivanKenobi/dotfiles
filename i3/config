@@ -8,6 +8,9 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
+set $font "pango:MesloLGS NF 11"
+font $font
+
 # The mouse doesn't define my focus
 focus_follows_mouse no
 
@@ -27,7 +30,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # power menu
-bindsym $mod+0 exec ~/.config/i3/scripts/powermenu
+bindsym $mod+0 exec ~/.i3/scripts/powermenu
 
 # bluetooth manager
 bindsym $mod+b exec --no-startup-id blueberry
@@ -48,15 +51,15 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+bindsym $mod+Shift+p exec ~/.i3/scripts/power-profiles
 
 # App Menu
 bindsym $mod+d exec rofi -modi drun -show drun \
-		-config ~/.config/rofi/rofidmenu.rasi
+		-config ~/.rofi/rofidmenu.rasi
 
 # App switching
 bindsym $mod+t exec rofi -show window \
-		-config ~/.config/rofi/rofidmenu.rasi
+		-config ~/.rofi/rofidmenu.rasi
 
 # Multimedia Keys
 
@@ -84,7 +87,7 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 bindsym Print exec --no-startup-id flameshot gui
 
 # Lock screen
-bindsym $mod+Escape exec --no-startup-id ~/.config/i3/script/blur-lock
+bindsym $mod+Escape exec --no-startup-id ~/.i3/script/blur-lock
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -115,9 +118,9 @@ mode "resize" {
 #############################################
 
 # No. 1
-bindcode 191 exec --no-startup-id ~/.config/i3/audio.sh speackers
+bindcode 191 exec --no-startup-id ~/.i3/audio.sh speackers
 # No. 2
-bindcode 192 exec --no-startup-id ~/.config/i3/audio.sh headset
+bindcode 192 exec --no-startup-id ~/.i3/audio.sh headset
 # No. 3
 bindcode 193 exec --no-startup-id firefox
 # No. 4
@@ -131,7 +134,7 @@ bindcode 197 kill
 # No. 8
 bindcode 198 exec --no-startup-id nautilus
 # No. 9
-bindcode 199 exec --no-startup-id ~/.config/i3/script/blur-lock
+bindcode 199 exec --no-startup-id ~/.i3/script/blur-lock
 
 #############################################
 # autostart applications/services on login: #
@@ -145,7 +148,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # in this cases better disable dex and use manual starting apps using xdg/autostart
 # if enabled you should comment welcome app.
 # https://github.com/jceb/dex
-#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.autostart/
 exec --no-startup-id dex --autostart --environment i3
 
 # num lock activated
@@ -181,7 +184,7 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 #exec --no-startup-id xscreensaver --no-splash
 
 # Desktop notifications
-exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+exec --no-startup-id dbus-launch dunst --config ~/.dunst/dunstrc
 # alternative if you installed aside with XFCE4:
 # exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
