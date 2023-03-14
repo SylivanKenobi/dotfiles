@@ -13,7 +13,7 @@ scrolling:
 
 # Corsor config
 cursor:
-  unfocused_hollow: false
+  unfocused_hollow: true
 
 # Font configuration
 font:
