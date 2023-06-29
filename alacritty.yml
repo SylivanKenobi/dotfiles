@@ -70,6 +70,8 @@ mouse:
   hints:
     launcher:
       program: firefox
+      args:
+        - --new-window
 
 key_bindings:
   - { key: B, mods: Command, action: IncreaseFontSize }

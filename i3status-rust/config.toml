@@ -8,7 +8,6 @@ theme = "gruvbox-dark"
 [theme.overrides]
 alternating_tint_bg = "#0d1117"
 
-
 [icons]
 icons = "awesome4"
 [icons.overrides]
@@ -44,8 +43,14 @@ cmd = "pavucontrol"
 
 [[block]]
   block = "net"
-  device = "eno1"
   interval = 1
+
+[[block]]
+block = "battery"
+format = " $icon $percentage "
+[[ block.click ]]
+button = "left"
+cmd = "~/.i3/scripts/power-profiles"
 
 [[block]]
 block = "time"

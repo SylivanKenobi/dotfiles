@@ -26,7 +26,8 @@ alias ll="ls -l"
 alias code="vscodium"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
-
+alias docked="~/.screenlayout/work-dock.sh"
+alias undocked="~/.screenlayout/undocked.sh"
 # History config
 HIST_IGNORE_DUPS="true"
 HIST_STAMPS="dd/mm/yyyy"
