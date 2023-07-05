@@ -338,6 +338,8 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgrey #2e2e2d
 set $darkblue #010130
+set $white #e6e6e6
+set $green #004f15
 
 #start of bar section
 bar {
@@ -345,13 +347,13 @@ bar {
     position top
     status_command i3status-rs ~/.i3status-rust/config.toml
     colors {
-        background $darkgrey
-        statusline $yellow
+        background #b8bab9
+        statusline $green
         # class              border     backgr    text
-        focused_workspace    $yellow    $darkgrey $yellow
-        inactive_workspace   $darkgrey  $darkgrey $yellow
-        active_workspace     $darkgrey  $darkgrey $yellow
-        urgent_workspace     $red       $darkgrey $red
+        focused_workspace    $green    $white $green
+        inactive_workspace   $white  $white $green
+        active_workspace     $white  $white $green
+        urgent_workspace     $red       $white $red
     }
 }
 
@@ -368,9 +370,9 @@ bar {
 
 # blue gruvbox
 # class                 border|backgr|text|indicator|child_border
-client.focused          $yellow $yellow $darkgrey $yellow $yellow
-client.focused_inactive $darkgrey $darkgrey $yellow $purple $darkgrey
-client.unfocused        $darkgrey $darkgrey $yellow $purple $darkgrey
+client.focused          $green $green $white $green $green
+client.focused_inactive $white $white $green $purple $white
+client.unfocused        $white $white $green $purple $white
 client.urgent           $red $red $white $red $red
 
 ##################

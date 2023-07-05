@@ -15,8 +15,9 @@ icons = "awesome4"
 
 [[block]]
 block = "custom"
-command = "if [[ $(date +'%H') < 16 ]]; then; echo '🧉'; else; echo '🍺'; fi"
+command = "[[ $(date +'%H') < 16 ]] && echo '{\"state\":\"Idle\", \"text\": \"🧉\"}' || echo '{\"state\":\"Idle\", \"text\": \"🍺\"}'"
 interval = 10
+json = true
 
 [[block]]
 block = "cpu"
