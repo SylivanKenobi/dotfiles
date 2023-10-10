@@ -12,7 +12,7 @@ case "${1:-}" in
   ("speackers"|"headset")
     SINKS=$(pactl list short sinks | grep -v easyeffects)
     declare -A devices
-    devices=(["speackers"]="alsa_output.pci-0000_08_00.4.analog-stereo" ["headset"]="alsa_output.usb-SteelSeries_Arctis_7_-00.analog-stereo")
+    devices=(["speackers"]="alsa_output.pci-0000_00_1f.3.analog-stereo" ["headset"]="alsa_output.usb-SteelSeries_Arctis_7_-00.analog-stereo")
     pactl set-default-sink "${devices[$1]}"
     ;;
   (*)

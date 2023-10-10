@@ -11,7 +11,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/usr/share/oh-my-zsh"
 
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions oc)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,8 +26,10 @@ alias ll="ls -l"
 alias code="vscodium"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
-alias docked="~/.screenlayout/work-dock.sh"
+alias docked="~/.screenlayout/docked.sh"
 alias undocked="~/.screenlayout/undocked.sh"
+alias loud="~/.i3/audio.sh speackers"
+alias quiet="~/.i3/audio.sh headset"
 # History config
 HIST_IGNORE_DUPS="true"
 HIST_STAMPS="dd/mm/yyyy"
@@ -39,8 +41,6 @@ setopt SHARE_HISTORY
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 [[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
