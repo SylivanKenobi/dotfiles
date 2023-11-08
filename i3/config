@@ -15,7 +15,7 @@ font $font
 focus_follows_mouse no
 
 # set background
-exec_always --no-startup-id feh --bg-scale ~/.wallpapers/*
+output * background ~/.wallpapers/DSCF2767.JPG fill
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -41,8 +41,8 @@ bindsym $mod+b exec --no-startup-id blueberry
 bindsym $mod+n exec --no-startup-id nm-connection-editor
 
 # Backlight control
-bindsym XF86MonBrightnessUp exec xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-bindsym XF86MonBrightnessDown exec xbacklight -10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessUp exec brightnessctl s +10% && notify-send "Brightness - $(brightnessctl g | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%- && notify-send "Brightness - $(brightnessctl g | cut -d '.' -f 1)%"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -51,7 +51,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.i3/scripts/power-profiles
@@ -89,7 +89,12 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 bindsym Print exec --no-startup-id flameshot gui
 
 # Lock screen
-bindsym $mod+Escape exec --no-startup-id ~/.i3/script/blur-lock
+bindsym $mod+Escape exec --no-startup-id swaylock -f -c 000000
+
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -113,6 +118,30 @@ mode "resize" {
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
+}
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+#############################################
+## Sway Config                         ##
+#############################################
+
+output eDP-1 scale 1
+input * {
+    xkb_layout "ch"
+    xkb_model "pc105"
+    tap enabled
 }
 
 #############################################
@@ -142,6 +171,8 @@ bindcode 199 exec --no-startup-id ~/.i3/script/blur-lock
 # autostart applications/services on login: #
 #############################################
 
+exec_always nm-applet --indicator
+
 #get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
@@ -166,22 +197,7 @@ exec --no-startup-id numlockx on
 
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id ~/.screenlayout/monitor.sh
-
-# set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
-
-# disable power saving (for example if using xscreensaver)
-#exec --no-startup-id xset -dpms
-
-# use xautolock to use autosuspend rules for mobile devices
-# https://wiki.archlinux.org/title/Session_lock#xautolock
-#exec --no-startup-id xautolock -time 60 -locker "systemctl suspend"
-
-
-# xscreensaver
-# https://www.jwz.org/xscreensaver
-#exec --no-startup-id xscreensaver --no-splash
+# exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.dunst/dunstrc
@@ -333,22 +349,10 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgrey #2e2e2d
 set $darkblue #010130
+set $white #FFFFFF
 
 #start of bar section
-bar {
-    font $font
-    position top
-    status_command i3status-rs ~/.i3status-rust/config.toml
-    colors {
-        background $darkgrey
-        statusline $yellow
-        # class              border     backgr    text
-        focused_workspace    $yellow    $darkgrey $yellow
-        inactive_workspace   $darkgrey  $darkgrey $yellow
-        active_workspace     $darkgrey  $darkgrey $yellow
-        urgent_workspace     $red       $darkgrey $red
-    }
-}
+bar swaybar_command waybar
 
 #end of bar section
 
@@ -373,20 +377,15 @@ client.urgent           $red $red $white $red $red
 ##################
 
 # set floating (nontiling) for apps needing it
-for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 
 # set floating (nontiling) for special apps
-for_window [class="Xsane" instance="xsane"] floating enable
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [window_role="About"] floating enable
-
-# set border of floating window
-for_window [class="urxvt"] border pixel 1
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -394,7 +393,6 @@ for_window [title="File Transfer*"] floating enable
 for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Nitrogen"] floating enable sticky enable border normal
@@ -402,6 +400,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="Xfburn"] floating enable
 # Titanfall 2
 for_window [class="steam_app_1182480"] floating enable
+
+include /etc/sway/config.d/*

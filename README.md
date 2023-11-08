@@ -10,3 +10,11 @@ $ mkrc .$DOTFILE # Add new dotfile and create symlink
 $ lsrc           # List all linked dotfiles
 $ rcup -v        # Update all dotfile symlinks
 ```
+
+Packages for sway:
+* sway
+* waybar
+* brightnessctl
+* swaybg
+* swaylock
+* otf-font-awesome
