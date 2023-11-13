@@ -16,16 +16,16 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: MesloLGS NF
+    family: CascadiaCode
     #    family: DejaVu Sans Mono for Powerline
     style: regular
   # Bold font face
   bold:
-    family: MesloLGS NF
+    family: CascadiaCode
     style: bold
   # Italic font face
   italic:
-    family: MesloLGS NF
+    family: CascadiaCode
     style: italic
   size: 12
 

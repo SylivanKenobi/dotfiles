@@ -66,8 +66,8 @@ bindsym $mod+t exec rofi -show window \
 # Multimedia Keys
 
 # volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 
 # gradular volume control
 bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
@@ -142,7 +142,6 @@ output HDMI-A-1 pos 3440 0 mode 1920x1080@60.000Hz transform 90
 input * {
     xkb_layout "ch"
     xkb_model "pc105"
-    tap enabled
 }
 
 #############################################

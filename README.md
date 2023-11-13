@@ -17,4 +17,9 @@ Packages for sway:
 * brightnessctl
 * swaybg
 * swaylock
+* swayidle
 * otf-font-awesome
+* ly
+    * systemctl disable lightdm.service
+    * systemctl enable ly.service
+* ttf-cascadia-code

@@ -12,11 +12,19 @@ case "${1:-}" in
   ("speackers"|"headset")
     SINKS=$(pactl list short sinks | grep -v easyeffects)
     declare -A devices
-    devices=(["speackers"]="alsa_output.pci-0000_00_1f.3.analog-stereo" ["headset"]="alsa_output.usb-SteelSeries_Arctis_7_-00.analog-stereo")
-    pactl set-default-sink "${devices[$1]}"
+    devices=(["speackers"]="pci-0000_08_00.4.analog-stereo" ["headset"]="SteelSeries_Arctis_7")
+
+    device=$(pactl list short sinks | grep "${devices[$1]}" | cut -f 2)
+
+    pactl set-default-sink "${device}"
+
+    INPUTS=`pactl list sink-inputs short | cut -f 1`
+    for i in $INPUTS; do
+      pactl move-sink-input $i "${device}"
+    done
     ;;
   (*)
     echo "Usage: $0 [|list|<sink name to switch to>]"
     ;;
 esac
-cd 
+
