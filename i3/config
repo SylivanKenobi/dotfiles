@@ -57,11 +57,10 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+Shift+p exec ~/.i3/scripts/power-profiles
 
 # App Menu
-bindsym $mod+d exec rofi -modi drun -show drun
+bindsym $mod+d exec wofi --show drun --allow-images
 
 # App switching
-bindsym $mod+t exec rofi -show window \
-		-config ~/.rofi/rofidmenu.rasi
+bindsym $mod+t exec wofi --show window
 
 # Multimedia Keys
 
@@ -184,7 +183,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.autostart/
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id picom --config ~/.picom.conf
+#exec --no-startup-id picom --config ~/.picom.conf
 
 # num lock activated
 exec --no-startup-id numlockx on

@@ -10,12 +10,18 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/usr/share/oh-my-zsh"
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_DBUS_REMOTE=1
+export EDITOR='vim'
+export XDG_CURRENT_DESKTOP=sway
+
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 plugins=(git zsh-autosuggestions oc)
 
 source $ZSH/oh-my-zsh.sh
-
-export EDITOR='vim'
 
 alias ls="ls --color=auto"
 alias lsblk="lsblk -o +LABEL"
@@ -23,13 +29,15 @@ alias ip="ip -c"
 alias showip="ip --brief a"
 alias ssh='TERM=xterm ssh'
 alias ll="ls -l"
-alias code="vscodium"
+alias code="codium"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
 alias docked="~/.screenlayout/docked.sh"
 alias undocked="~/.screenlayout/undocked.sh"
 alias loud="~/.i3/audio.sh speackers"
 alias quiet="~/.i3/audio.sh headset"
+alias notes="vim ~/Documents/git/Notes"
+
 # History config
 HIST_IGNORE_DUPS="true"
 HIST_STAMPS="dd/mm/yyyy"
