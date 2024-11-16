@@ -30,7 +30,7 @@ window#waybar.solo {
     background: transparent;
 }
 
-#workspaces button.visible {
+#workspaces button {
     border-top: 3px solid rgba(217, 216, 216, 0.4);;
     color:      rgba(217, 216, 216, 1);
 }
