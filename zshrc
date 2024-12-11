@@ -11,7 +11,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/usr/share/oh-my-zsh"
 
-plugins=(git zsh-autosuggestions)
+plugins=(oc git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,6 +35,7 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 setopt SHARE_HISTORY
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
