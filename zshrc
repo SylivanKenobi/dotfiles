@@ -30,6 +30,7 @@ alias docked="~/.screenlayout/docked.sh"
 alias undocked="~/.screenlayout/undocked.sh"
 alias loud="~/.i3/audio.sh speackers"
 alias quiet="~/.i3/audio.sh headset"
+alias buds="~/.i3/audio.sh buds"
 # History config
 HIST_IGNORE_DUPS="true"
 HIST_STAMPS="dd/mm/yyyy"
@@ -37,6 +38,9 @@ HISTFILE=~/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 setopt SHARE_HISTORY
+
+export PATH=$PATH:/home/sgilgen/.local/bin
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

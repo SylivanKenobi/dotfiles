@@ -66,8 +66,8 @@ bindsym $mod+t exec rofi -show window \
 # Multimedia Keys
 
 # volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%- && pkill -RTMIN+1 i3blocks
 
 # gradular volume control
 bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
@@ -116,8 +116,18 @@ mode "resize" {
 }
 
 #############################################
-## Macropad Config                         ##
+## Macros                                  ##
 #############################################
+
+# Thumb RD
+bindcode 200 kill
+# Thumb RT
+bindcode 201 exec --no-startup-id playerctl pause; exec --no-startup-id ~/.i3/scripts/blur-lock
+
+# Thumb LD
+bindcode 198 exec --no-startup-id playerctl play-pause
+# Thumb LT
+bindcode 199 exec --no-startup-id ~/.i3/audio.sh switch
 
 # No. 1
 bindcode 191 exec --no-startup-id ~/.i3/audio.sh speackers
@@ -132,11 +142,11 @@ bindcode 195 exec --no-startup-id discord
 # No. 6
 bindcode 196 exec --no-startup-id steam
 # No. 7
-bindcode 197 kill
+# bindcode 197 kill
 # No. 8
-bindcode 198 exec --no-startup-id nautilus
-# No. 9
-bindcode 199 exec --no-startup-id ~/.i3/script/blur-lock
+# bindcode 198 exec --no-startup-id nautilus
+# # No. 9
+# bindcode 199 exec --no-startup-id ~/.i3/scripts/blur-lock
 
 #############################################
 # autostart applications/services on login: #
@@ -153,7 +163,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.autostart/
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id picom --config ~/.picom.conf
+# exec --no-startup-id picom --config ~/.picom.conf
 
 # num lock activated
 exec --no-startup-id numlockx on
@@ -184,9 +194,7 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 #exec --no-startup-id xscreensaver --no-splash
 
 # Desktop notifications
-exec --no-startup-id dbus-launch dunst --config ~/.dunst/dunstrc
-# alternative if you installed aside with XFCE4:
-# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 
 # autotiling script
 # https://github.com/nwg-piotr/autotiling
@@ -300,7 +308,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 
 # Open applications on specific workspaces
-assign [class="Steam"] $ws3
+assign [class="steam"] $ws3
 
 #############################################
 ### settings for i3-gaps:                 ###
