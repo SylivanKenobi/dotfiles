@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "reload_style_on_change": true,
-    "modules-left": ["clock","custom/pacman","tray"],
+    "modules-left": ["clock","custom/pacman","tray", "pulseaudio", "custom/beer"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["group/expand","bluetooth","network","battery"],
 
@@ -17,6 +17,30 @@
         "persistent-workspaces": {
             "*": [ 1,2,3,4,5 ]
         }
+    },
+    "custom/beer": {
+        "interval": 10,
+        "format": "{}",
+        "exec": "~/.config/hypr/beer.sh",
+        "tooltip": false
+    },    
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
     },
     "clock": {
         "format": "{:%H:%M:%S} ",
@@ -51,7 +75,7 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-        "on-click": "blueman-manager",
+        "on-click": "blueman-manager"
     }, 
     "battery": {
         "interval":30,

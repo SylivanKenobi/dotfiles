@@ -51,7 +51,7 @@ tooltip {
     background:@background;
     color: @color7;
 }
-#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover,#disk:hover{
+#clock:hover, #custom-pacman:hover,  #pulseaudio:hover,  #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover,#disk:hover{
     transition: all .3s ease;
     color:@color9;
 }
@@ -66,6 +66,12 @@ tooltip {
     transition: all .3s ease;
 }
 #custom-pacman{
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color:@color7;
+
+}
+#custom-beer{
     padding: 0px 5px;
     transition: all .3s ease;
     color:@color7;
@@ -159,7 +165,7 @@ tooltip {
 #custom-colorpicker{
     padding: 0px 5px;
 }
-#cpu,#memory,#temperature,#disk{
+#cpu,#memory,#temperature,#disk, #pulseaudio{
     padding: 0px 5px;
     transition: all .3s ease; 
     color:@color7;
