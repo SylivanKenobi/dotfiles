@@ -15,13 +15,11 @@ export MOZ_DBUS_REMOTE=1
 export EDITOR='vim'
 export XDG_CURRENT_DESKTOP=sway
 
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
 plugins=(git zsh-autosuggestions oc)
 
 source $ZSH/oh-my-zsh.sh
+
+export EDITOR='vim'
 
 alias ls="ls --color=auto"
 alias lsblk="lsblk -o +LABEL"
@@ -45,6 +43,10 @@ HISTFILE=~/.zsh_history
 HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 setopt SHARE_HISTORY
+
+export PATH=$PATH:/home/sgilgen/.local/bin
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

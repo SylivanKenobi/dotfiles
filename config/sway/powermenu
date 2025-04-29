@@ -64,7 +64,8 @@ where:
 
 This script depends on:
   - systemd,
-  - i3,
+  - sway,
+  - swaylock,
   - rofi or zenity."
 
 # Check whether the user-defined launcher is valid
@@ -118,7 +119,7 @@ menu=(
   [ Reboot]="systemctl reboot"
   [ Suspend]="systemctl suspend"
   [ Hibernate]="systemctl hibernate"
-  [ Lock]="~/.i3/scripts/blur-lock"
+  [ Lock]="swaylock"
   [ Logout]="swaymsg exit"
   [ Cancel]=""
 )
