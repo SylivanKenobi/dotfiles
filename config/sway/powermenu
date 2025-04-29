@@ -65,7 +65,7 @@ where:
 This script depends on:
   - systemd,
   - sway,
-  - swaylock,
+  - hyprlock,
   - rofi or zenity."
 
 # Check whether the user-defined launcher is valid
@@ -119,7 +119,7 @@ menu=(
   [ Reboot]="systemctl reboot"
   [ Suspend]="systemctl suspend"
   [ Hibernate]="systemctl hibernate"
-  [ Lock]="swaylock"
+  [ Lock]="hyprlock"
   [ Logout]="swaymsg exit"
   [ Cancel]=""
 )

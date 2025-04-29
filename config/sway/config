@@ -87,10 +87,10 @@ bindsym Print exec --no-startup-id flameshot gui
 # Lock screen
 bindsym $mod+Escape exec --no-startup-id swaylock -f -c 000000
 
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -146,7 +146,7 @@ input * {
 # Thumb RD
 bindcode 200 kill
 # Thumb RT
-bindcode 201 exec --no-startup-id playerctl play-pause; exec --no-startup-id  swaylock -f -c A9A9A9
+bindcode 201 exec --no-startup-id playerctl play-pause; exec --no-startup-id hyprlock
 
 # Thumb LD
 bindcode 198 exec --no-startup-id playerctl play-pause
