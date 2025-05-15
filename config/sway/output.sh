@@ -12,17 +12,17 @@ if [ -z "$NEW_OUTPUT" ]; then
     exit 1
 fi
 # Step 3: Assign a workspace to the new output
-swaymsg workspace sshr output "$NEW_OUTPUT"
+swaymsg workspace 8 output "$NEW_OUTPUT"
 
 # Step 4: Set the resolution for the new output
-swaymsg output "$NEW_OUTPUT" resolution 1920x1080
+swaymsg output "$NEW_OUTPUT" resolution 1080x1920
 
 # Step 5: Set the background color for the new output
 swaymsg output "$NEW_OUTPUT" bg "#220900" solid_color
 
 # Step 6: Switch to workspace sshr and then back to the previous workspace
 CURRENT_WORKSPACE=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')
-swaymsg workspace sshr
+swaymsg workspace 8
 swaymsg workspace "$CURRENT_WORKSPACE"
 
 wl-mirror "$NEW_OUTPUT"

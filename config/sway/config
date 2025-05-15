@@ -130,13 +130,20 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 #############################################
-## Sway Config                         ##
+## Sway Config                             ##
 #############################################
 
-output eDP-1 pos 0 0 mode 2256x1504@59.999Hz scale 1
+output eDP-1 pos 2560 0 mode 2256x1504@59.999Hz scale 1
+output DP-3 pos 0 0
 input * {
     xkb_layout "ch"
     xkb_model "pc105"
+}
+
+input 2362:628:PIXA3854:00_093A:0274_Touchpad {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled    
 }
 
 #############################################
@@ -168,9 +175,9 @@ bindcode 196 exec --no-startup-id steam
 # No. 7
 # bindcode 197 kill
 # No. 8
-# bindcode 198 exec --no-startup-id nautilus
+# bindcode 198 exec --no-startup-id nemo
 # # No. 9
-# bindcode 199 exec --no-startup-id swaylock
+# bindcode 199 exec --no-startup-id hyprlock
 
 #############################################
 # autostart applications/services on login: #
@@ -217,6 +224,8 @@ exec --no-startup-id dbus-launch dunst --config ~/.dunst/dunstrc
 # https://github.com/nwg-piotr/autotiling
 # `yay -S autotiling ;) (it is in AUR)
 #exec_always --no-startup-id autotiling
+
+exec wl-paste --watch cliphist store
 
 #############################################
 ## Workspace stuff                         ##
@@ -331,14 +340,13 @@ bindsym $mod+Shift+o exec ~/.config/sway/killoutput.sh
 assign [class="steam"] $ws3
 
 #############################################
-### settings for i3-gaps:                 ###
+### settings for gaps:                    ###
 #############################################
 
 # Set inner/outer gaps
 gaps inner 14
 gaps outer -2
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
 #############################################
 #   THEME                                   #
 #############################################
