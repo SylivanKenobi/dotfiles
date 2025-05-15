@@ -52,3 +52,6 @@ setopt SHARE_HISTORY
 [[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/p10k.zsh.
+[[ ! -f ~/.dotfiles/p10k.zsh ]] || source ~/.dotfiles/p10k.zsh

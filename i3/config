@@ -60,13 +60,13 @@ bindsym $mod+Shift+p exec ~/.i3/scripts/power-profiles
 bindsym $mod+d exec wofi --show drun --allow-images
 
 # App switching
-bindsym $mod+t exec wofi --show window
+# bindsym $mod+t exec wofi --show window
 
 # Multimedia Keys
 
 # volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
 
 # gradular volume control
 bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
@@ -135,6 +135,7 @@ bindsym $mod+minus scratchpad show
 
 output DP-3 pos 0 0 mode 3440x1440@144Hz
 output HDMI-A-1 pos 3440 0 mode 1920x1080@60.000Hz transform 90
+
 input * {
     xkb_layout "ch"
     xkb_model "pc105"
@@ -294,6 +295,10 @@ set $ws5 "05 "
 set $ws6 "06 "
 set $ws7 "07 "
 set $ws8 "08 "
+
+
+workspace $ws1 output DP-3
+workspace $ws2 output HDMI-A-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
