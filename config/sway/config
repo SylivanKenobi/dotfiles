@@ -15,7 +15,7 @@ font $font
 focus_follows_mouse no
 
 # set background
-output "*" bg /home/sgilgen/.wallpapers/norway.jpg fill
+output "*" bg ~/.wallpapers/norway.jpg fill
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -133,8 +133,9 @@ bindsym $mod+minus scratchpad show
 ## Sway Config                             ##
 #############################################
 
-output eDP-1 pos 2560 0 mode 2256x1504@59.999Hz scale 1
-output DP-3 pos 0 0
+
+output DP-3 pos 0 0 mode 3440x1440@144Hz
+output HDMI-A-1 pos 3440 0 mode 1920x1080@60.000Hz transform 90
 input * {
     xkb_layout "ch"
     xkb_model "pc105"
@@ -303,6 +304,10 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 
+workspace $ws1 output DP-3
+workspace $ws2 output HDMI-A-1
+workspace $ws3 output DP-3
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -355,9 +360,9 @@ gaps outer -2
 default_border pixel 2
 default_floating_border normal
 
-corner_radius 20
-blur enable
-shadows enable
+# corner_radius 20
+# blur enable
+# shadows enable
 
 # Hide borders
 hide_edge_borders none

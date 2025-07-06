@@ -9,19 +9,19 @@
 
     "sway/workspaces": {
         "format": "{name} {icon}",
-        "all-outputs": true,
+        "all-outputs": false,
         "format-icons": {
             "focused": "",
             "default": "",
             "empty": ""
         },
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": []
-        }
+        // "persistent-workspaces": {
+        //     "1": [],
+        //     "2": [],
+        //     "3": [],
+        //     "4": [],
+        //     "5": []
+        // }
     },
     "custom/beer": {
         "interval": 10,
