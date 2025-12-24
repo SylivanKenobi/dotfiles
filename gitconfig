@@ -1,7 +1,7 @@
 [user]
     email = gilgen@puzzle.ch
     name = Sylvain Gilgen
-#     signingkey = 348F38C5
+    signingkey = /home/sgilgen/.ssh/id_ed25519.pub
 # [commit]
 #     gpgsign = true
 [alias]
@@ -13,3 +13,5 @@
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
+[init]
+	defaultBranch = main

@@ -63,6 +63,4 @@ timezone = "Europe/Zurich"
 [block.theme_overrides]
 idle_bg = "#025217"
 
-[[block]]
-  block = "pacman"
-  interval = 600
+

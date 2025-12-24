@@ -1,0 +1,5 @@
+# Personal Account
+Host gitlab.puzzle.ch
+    HostName gitlab.puzzle.ch
+    User git
+    IdentityFile ~/.ssh/id_ed25519

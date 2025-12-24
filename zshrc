@@ -23,7 +23,6 @@ alias ip="ip -c"
 alias showip="ip --brief a"
 alias ssh='TERM=xterm ssh'
 alias ll="ls -l"
-alias code="vscodium"
 alias gst="git status"
 alias tog="cd ~/Documents/git"
 
@@ -35,7 +34,7 @@ HISTSIZE=999999999
 SAVEHIST=$HISTSIZE
 setopt SHARE_HISTORY
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/home/sgilgen/.local/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
