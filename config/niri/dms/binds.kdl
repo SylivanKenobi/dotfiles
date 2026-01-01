@@ -1,6 +1,7 @@
 binds {
     // === System & Overview ===
     Mod+Space repeat=false { toggle-overview; }
+    Mod+0 { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
     Mod+Tab repeat=false { toggle-overview; }
     Mod+Shift+Slash { show-hotkey-overlay; }
 

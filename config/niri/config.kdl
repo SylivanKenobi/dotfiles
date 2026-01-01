@@ -9,11 +9,26 @@ config-notification {
 output "DP-3" {
     mode "3440x1440@144"
     position x=0 y=0
+    layout {
+        default-column-width { proportion 0.25; }
+
+        preset-column-widths {
+            proportion 0.2
+            proportion 0.25
+            proportion 0.4
+            proportion 0.5
+            proportion 0.75
+            proportion 0.8
+        }
+    }
 }
 output "HDMI-A-1" {
     mode "1920x1080@60"
     position x=1440 y=0
     transform "270"
+    layout {
+        default-column-width { proportion 1.0; }
+    }
 }
 
 
@@ -122,7 +137,9 @@ overview {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 environment {
-  XDG_CURRENT_DESKTOP "niri"
+    XDG_CURRENT_DESKTOP "niri"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 }
 hotkey-overlay {
     skip-at-startup
