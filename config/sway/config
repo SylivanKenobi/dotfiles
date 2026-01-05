@@ -1,0 +1,347 @@
+#############################################
+#         General configurations            #
+#############################################
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+set $font "pango:MesloLGS NF 11"
+font $font
+
+# The mouse doesn't define my focus
+focus_follows_mouse no
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+#############################################
+#         General Keybindings               #
+#############################################
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+# kill anything
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
+# power menu
+bindsym $mod+0 exec dms ipc call powermenu toggle
+
+# bluetooth manager
+bindsym $mod+b exec --no-startup-id blueberry
+# network manager
+bindsym $mod+n exec --no-startup-id nm-connection-editor
+
+# Backlight control
+bindsym XF86MonBrightnessUp exec brightnessctl s +10% && notify-send "Brightness - $(brightnessctl g | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%- && notify-send "Brightness - $(brightnessctl g | cut -d '.' -f 1)%"
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart sway inplace (preserves your layout/session, can be used to upgrade sway)
+bindsym $mod+Shift+r restart
+
+# exit sway (logs you out of your X session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# App Menu
+bindsym $mod+d exec dms ipc call spotlight toggle
+
+# App switching
+bindsym $mod+t exec wofi --show window
+
+# Multimedia Keys
+
+# volume
+bindsym XF86AudioRaiseVolume exec dms ipc call audio increment 3
+bindsym XF86AudioLowerVolume exec dms ipc call audio decrement 3
+
+# mute
+bindsym XF86AudioMute exec dms ipc call audio mute
+
+# audio control
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Flameshot
+bindsym Print exec --no-startup-id dms screenshot
+
+# Lock screen
+bindsym $mod+Escape exec --no-startup-id dms ipc call lock lock
+
+# Resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+#############################################
+## Sway Config                             ##
+#############################################
+
+
+output DP-3 pos 0 0 mode 3440x1440@144Hz
+output HDMI-A-1 pos 3440 0 mode 1920x1080@60.000Hz transform 90
+input * {
+    xkb_layout "ch"
+    xkb_model "pc105"
+}
+
+input 2362:628:PIXA3854:00_093A:0274_Touchpad {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled    
+}
+
+#############################################
+## Macros                                  ##
+#############################################
+
+# Thumb RD
+bindcode 195 kill
+# Thumb RT
+bindcode 194 exec --no-startup-id playerctl pause; exec --no-startup-id dms ipc call lock lock
+
+# Thumb LD
+bindcode 193 exec --no-startup-id playerctl play-pause
+# Thumb LT
+bindcode 192 exec --no-startup-id ~/.config/sway/audio.sh switch
+
+#############################################
+# autostart applications/services on login: #
+#############################################
+
+exec dms run
+exec wl-paste --watch cliphist store
+
+# exec_always nm-applet --indicator
+
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# num lock activated
+exec --no-startup-id numlockx on
+
+#############################################
+## Workspace stuff                         ##
+#############################################
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+## Modify // Containing Workspace // <><Ctrl><Shift> ↑ ↓ ← → ##
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Down move workspace to output down
+bindsym $mod+Ctrl+Shift+Up move workspace to output up
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
+# split orientation
+bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+q split toggle
+
+# toggle fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# toggle sticky
+bindsym $mod+Shift+s sticky toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# Workspace names
+# to display names or symbols instead of plain workspace numbers you can use
+# something like: set $ws1 1:mail
+#                 set $ws2 2:
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+
+workspace $ws1 output DP-3
+workspace $ws2 output HDMI-A-1
+workspace $ws3 output DP-3
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+
+# Move focused container to workspace
+bindsym $mod+Ctrl+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8; workspace $ws8
+
+# Move to workspace with focused container
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+
+bindsym $mod+o exec ~/.config/sway/output.sh
+bindsym $mod+Shift+o exec ~/.config/sway/killoutput.sh
+
+# Open applications on specific workspaces
+assign [class="steam"] $ws3
+
+#############################################
+### settings for gaps:                    ###
+#############################################
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer -2
+
+#############################################
+#   THEME                                   #
+#############################################
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border pixel 2
+default_floating_border normal
+
+# corner_radius 20
+# blur enable
+# shadows enable
+
+# Hide borders
+hide_edge_borders none
+
+# include colors from matugen
+include ~/.config/sway/colors
+
+#start of window title bars & borders section
+
+# Class                  Border      Background  Text    Indicator   Child Border
+client.focused           $primary    $primary    $background  $primary    $primary
+client.focused_inactive  $inactive   $inactive   $text        $inactive   $inactive
+client.unfocused         $inactive   $inactive   $text        $inactive   $inactive
+client.urgent            $urgent     $urgent     $text        $urgent     $urgent
+
+##################
+# floating rules #
+##################
+
+# set floating (nontiling) for apps needing it
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+
+# set floating (nontiling) for special apps
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [window_role="About"] floating enable
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [window_role="PictureInPicture"] floating enable, sticky enable, border pixel 1
+
+# Titanfall 2
+for_window [class="steam_app_1182480"] floating enable
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+
+
+include /etc/sway/config.d/*

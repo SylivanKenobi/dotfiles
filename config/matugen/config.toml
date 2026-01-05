@@ -1,0 +1,7 @@
+[config]
+reload_on_change = true
+
+[templates.sway]
+input_path = "~/.config/sway/templates/colors.conf"
+output_path = "~/.config/sway/colors"
+post_hook = "swaymsg reload"

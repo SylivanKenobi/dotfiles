@@ -1,0 +1,74 @@
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "B"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "N"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "M"
+mods = "Control"
+
+[general]
+live_config_reload = true
+working_directory = "None"
+import = [
+    "~/.config/alacritty/dank-theme.toml"
+]
+[terminal]
+
+[cursor.style]
+shape = "Block"
+
+[cursor.vi_mode_style]
+shape = "Block"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 12
+
+[font.bold]
+family = "CascadiaCode"
+style = "bold"
+
+[font.italic]
+family = "CascadiaCode"
+style = "italic"
+
+[font.normal]
+family = "CascadiaCode"
+style = "regular"
+
+[[hints.enabled]]
+command = "firefox"
+hyperlinks = true
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+[terminal.shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+opacity = 0.8
+
+[keyboard]
