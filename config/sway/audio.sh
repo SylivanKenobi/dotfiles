@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -A devices
-devices=(["speackers"]="alsa_output.pci-0000_08_00.4.analog-stereo" ["headset"]="SteelSeries_Arctis_7")
+devices=(["speackers"]="alsa_output.pci-0000_00_1f.3.analog-stereo" ["headset"]="SteelSeries_Arctis_7")
 case "${1:-}" in
   (""|list)
     pactl list short sinks

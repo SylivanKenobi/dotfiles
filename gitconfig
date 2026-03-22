@@ -1,6 +1,7 @@
 [user]
     email = gilgen@puzzle.ch
     name = Sylvain Gilgen
+	signingkey = /home/sgilgen/.ssh/sgilgen-ed25519.pub
 #     signingkey = 348F38C5
 # [commit]
 #     gpgsign = true
@@ -9,3 +10,7 @@
     lg = log --graph --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset)%C(auto)%d%C(reset) %C(normal)%s%C(reset) %C(dim white)%an%C(reset) %C(dim blue)(%ad)%C (reset)' --all
 [init]
 	defaultBranch = main
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
